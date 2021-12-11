@@ -1,31 +1,5 @@
-# rollup-plugin-formatter
-A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件
+import { Plugin } from "rollup";
 
-## Install 安装
-```bash
-# 使用npm安装
-npm install rollup-plugin-formatter -D
-
-# 使用yarn安装
-yarn add rollup-plugin-formatter -D
-```
-
-## Usage 使用
-```js
-// rollup.config.js
-import formatter from 'rollup-plugin-formatter';
-
-export default {
-  // ... other options
-  plugins: [
-    // ... other plugins
-    formatter(),
-  ],
-};
-```
-
-## Interface 接口
-```ts
 /**
  * The formatter plugin options, 格式化插件参数
  */
@@ -56,4 +30,5 @@ interface FormatterOptions {
  * The formatter plugin entrance, 格式化插件入口
  */
 declare function formatter(options?: FormatterOptions): Plugin;
-```
+
+export = formatter;
