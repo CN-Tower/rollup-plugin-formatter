@@ -1,5 +1,5 @@
 /*!
- * rollup-plugin-formatter@1.0.0
+ * rollup-plugin-formatter@1.0.1
  * A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件
  */
 import MagicString from 'magic-string';
@@ -61,7 +61,7 @@ const formatter = function ({
         }
       }
 
-      const ms = new MagicString(result);
+      const ms = new MagicString(code);
       return {
         code: result,
         map: ms.generateMap({

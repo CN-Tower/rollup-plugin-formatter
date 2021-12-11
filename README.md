@@ -1,4 +1,7 @@
 # rollup-plugin-formatter
+
+[![npm](https://img.shields.io/npm/v/rollup-plugin-formatter.svg)](https://www.npmjs.com/package/rollup-plugin-formatter) 
+
 A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件
 
 ## Install 安装

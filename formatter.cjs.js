@@ -1,5 +1,5 @@
 /*!
- * rollup-plugin-formatter@1.0.0
+ * rollup-plugin-formatter@1.0.1
  * A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件
  */
 'use strict';
@@ -67,7 +67,7 @@ const formatter = function ({
         }
       }
 
-      const ms = new MagicString__default["default"](result);
+      const ms = new MagicString__default["default"](code);
       return {
         code: result,
         map: ms.generateMap({

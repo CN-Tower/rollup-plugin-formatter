@@ -50,7 +50,7 @@ const formatter = function({ ignoreLicense, filter, newHandler, beforeHandler, a
         }
       }
 
-      const ms = new MagicString(result);
+      const ms = new MagicString(code);
       return { code: result, map: ms.generateMap({ hires: true }) };
     }
   }
