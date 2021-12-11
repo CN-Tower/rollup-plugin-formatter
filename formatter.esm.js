@@ -1,27 +1,29 @@
 /*!
- * rollup-plugin-formatter@1.0.1
+ * rollup-plugin-formatter@1.0.2
  * A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件
  */
 import MagicString from 'magic-string';
 
-const isFun = value => typeof value === 'function';
+var isFun = function isFun(value) {
+  return typeof value === 'function';
+};
 
 /**
  * A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件
  */
-const formatter = function ({
-  ignoreLicense,
-  filter,
-  newHandler,
-  beforeHandler,
-  afterHandler
-} = {}) {
+var formatter = function formatter() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      ignoreLicense = _ref.ignoreLicense,
+      filter = _ref.filter,
+      newHandler = _ref.newHandler,
+      beforeHandler = _ref.beforeHandler,
+      afterHandler = _ref.afterHandler;
+
   return {
     name: 'formatter',
-
-    transform(code, id) {
-      let result = code;
-      const isFormat = isFun(filter) ? filter(id, code) : true;
+    transform: function transform(code, id) {
+      var result = code;
+      var isFormat = isFun(filter) ? filter(id, code) : true;
 
       // 根据过滤函数判断是否格式化
       if (isFormat) {
@@ -43,11 +45,11 @@ const formatter = function ({
           // -去除多行注释前面留一个空行
           .replace(/(?:\r|\n)+(\s*\/\*\*)/g, '\r\n\r\n$1')
           // -行尾的双斜杆注释优化
-          .replace(/(?<!^\s*\*.*?)(;|})\s?(\/\/.*)(?:[\r|\n]*)(\s*)/g, `$1\r\n\r\n$3$2\r\n$3`)
+          .replace(/(?<!^\s*\*.*?)(;|})\s?(\/\/.*)(?:[\r|\n]*)(\s*)/g, '$1\r\n\r\n$3$2\r\n$3')
           // -带中划线的注释强制换行，如本行
           .replace(/(?<![\r\n])\s*(\/\/\s?-.*)(?:[\r|\n]*)(\s*)/g, '\r\n$2$1\r\n$2')
           // -去除双斜杆注释后面的空行
-          .replace(/(\s*\/\/\s.*)(?:[\r|\n]*)/g, `$1\r\n`);
+          .replace(/(\s*\/\/\s.*)(?:[\r|\n]*)/g, "$1\r\n");
 
           if (!ignoreLicense) {
             // 去除微软License声明
@@ -61,7 +63,7 @@ const formatter = function ({
         }
       }
 
-      const ms = new MagicString(code);
+      var ms = new MagicString(code);
       return {
         code: result,
         map: ms.generateMap({
@@ -69,7 +71,6 @@ const formatter = function ({
         })
       };
     }
-
   };
 };
 
