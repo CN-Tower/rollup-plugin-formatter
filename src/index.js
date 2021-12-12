@@ -26,19 +26,19 @@ const formatter = function({ ignoreLicense, filter, newHandler, beforeHandler, a
         // 执行默认对注释的处理
         else {
           result = result
-            // -去除多行注释后面的空行
+            // - 处理多行注释后面的空行
             .replace(/\*\/(?:\r|\n)+(\s*\w*)/g, '*/\r\n$1')
-            // -去除多行注释前面留一个空行
+            // - 多行注释前面留一个空行
             .replace(/(?:\r|\n)+(\s*\/\*\*)/g, '\r\n\r\n$1')
-            // -行尾的双斜杆注释优化
-            .replace(/(?<!^\s*\*.*?)(;|})\s?(\/\/.*)(?:[\r|\n]*)(\s*)/g, '$1\r\n\r\n$3$2\r\n$3')
-            // -带中划线的注释强制换行，如本行
+            // - 行尾的双斜杆注释优化
+            .replace(/(?<!^\s*\*.*?)(;|})\s?(\/\/.*)(?:[\r|\n]*)(\s*)/gm, '$1\r\n\r\n$3$2\r\n$3')
+            // - 带中划线的注释强制换行，如本行注释
             .replace(/(?<![\r\n])\s*(\/\/\s?-.*)(?:[\r|\n]*)(\s*)/g, '\r\n$2$1\r\n$2')
-            // -去除双斜杆注释后面的空行
+            // - 去除双斜杆注释后面的空行
             .replace(/(\s*\/\/\s.*)(?:[\r|\n]*)/g, `$1\r\n`);
 
           if (!ignoreLicense) {
-            // 去除微软License声明
+            // 去除代码中的License注释
             result = result
               .replace(/\/\*!(?=((?<!\*\/)(?:\r|\n|.)*?THE SOFTWARE IS PROVIDED "AS IS"))(?:\r|\n|.)*?\*\/(?:\r|\n|\s)*/g, '');
           }

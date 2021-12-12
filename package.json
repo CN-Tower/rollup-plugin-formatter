@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-formatter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A code editor and comments formatter plugin of rollup, 一个rollup代码修改和格式化注释的插件",
   "main": "formatter.cjs.js",
   "module": "formatter.esm.js",
